@@ -50,3 +50,19 @@ where `<mask-ukf>` is the folder where the repository was cloned.
      - `<segmentation>` can be `gt` (i.e. ground truth), `mrcnn` (i.e. `Mask R-CNN`) or `posecnn` (i.e. masks from segmentation network of `PoseCNN`)
        
    Not all combinations of `<alg>`, `<scenario>` and `<segmentation>` are available. For example, `ADD-S` results for `DenseFusion` are available in their [repository](https://github.com/j96w/DenseFusion#results).
+   
+## Results
+
+### ADD-S (masks available at each frame)
+
+<p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/adds.png" alt="in hand object tracking" width="750" height="420"/></p>
+
+### RMSE (masks available at each frame)
+
+<p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/rmse.png" alt="in hand object tracking" width="750" height="420"/></p>
+
+
+## ADD-S and RMSE (masks from Mask R-CNN at 5 fps)
+
+<p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/rt.png" alt="in hand object tracking" width="450" height="450"/></p>
+
