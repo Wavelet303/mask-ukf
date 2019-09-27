@@ -2,7 +2,7 @@
 
 This is the official repository of MaskUKF, an instance segmentation aided Unscented Kalman Filter for 6D object pose tracking.
 
-<p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/readme_fig.png" alt="in hand object tracking" width="449" height="220"/></p>
+<p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/scheme.png" alt="in hand object tracking"/></p>
 
 News: 26/09/2019 - code for evaluation available. Code of the actual implementation to be released soon.
 
