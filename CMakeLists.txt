@@ -9,10 +9,15 @@
 
 cmake_minimum_required(VERSION 3.5)
 
-project(mask-ukf
-        LANGUAGES CXX)
+project(mask-ukf LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
+
+option(BUILD_OBJECT_TRACKING "Build object-tracking" OFF)
+if (BUILD_OBJECT_TRACKING)
+   # iCub contrib
+   find_package(ICUBcontrib REQUIRED)
+endif()
 
 # Default build type to Release
 if(NOT CMAKE_CONFIGURATION_TYPES)
@@ -28,4 +33,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}"
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake
                               ${ICUBCONTRIB_MODULE_PATH}
                               )
+
+if (BUILD_OBJECT_TRACKING)
+   include(ICUBcontribHelpers)
+   include(ICUBcontribOptions)
+   icubcontrib_set_default_prefix()
+   icubcontrib_add_uninstall_target()
+endif()
+
 add_subdirectory(src)

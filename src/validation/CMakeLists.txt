@@ -7,8 +7,6 @@
 #
 #===============================================================================
 
-option(USE_OPENMP "Use OpenMP" OFF)
-
 set(EXE_TARGET_NAME validation)
 
 # Eigen
@@ -18,6 +16,9 @@ find_package(Eigen3 REQUIRED)
 if (USE_OPENMP)
   find_package(OpenMP REQUIRED)
 endif()
+
+# nanoflann
+find_package(nanoflann QUIET)
 
 set(${EXE_TARGET_NAME}_HDR
     include/Metric.h
@@ -58,6 +59,18 @@ target_link_libraries(${EXE_TARGET_NAME}
                       PRIVATE
                       Eigen3::Eigen
                       )
+
+if (nanoflann_FOUND)
+    message(STATUS "nanoflann found on the system. Using system library.")
+    target_link_libraries(${EXE_TARGET_NAME} PRIVATE nanoflann::nanoflann)
+else()
+    message(STATUS "nanoflann not found on the system. Using header shipped with this package.")
+    set(nanoflann_INCLUDE_DIR include/nanoflann/)
+    target_include_directories(${EXE_TARGET_NAME}
+                               PRIVATE
+                               ${nanoflann_INCLUDE_DIR}
+                               )
+endif()
 
 if (USE_OPENMP)
     if(NOT TARGET OpenMP::OpenMP_CXX)

@@ -7,4 +7,11 @@
 #
 #===============================================================================
 
+option(USE_OPENMP "Use OpenMP" OFF)
+
 add_subdirectory(validation)
+
+if (BUILD_OBJECT_TRACKING)
+   add_subdirectory(camera-library)
+   add_subdirectory(object-tracking)
+endif()
