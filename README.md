@@ -27,7 +27,7 @@ Code has been tested on `Arch Linux` with the following dependencies with the in
 - [`OpenCV (3.4.0)`](https://opencv.org/)
 - [`PCL (1.9.1)`](http://pointclouds.org/)
 
-> Note: while we use `Eigen` for all the mathematical computations, the library `ml-pack` relies on `armadillo`
+> Note: while we use `Eigen` for all the mathematical computations, the library `mlpack` relies on `armadillo`
 
 ### Optional
 - `OpenMP (8.0.0-1)` (optional for faster execution)
