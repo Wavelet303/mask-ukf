@@ -15,6 +15,7 @@ Code has been tested on `Arch Linux` with the following dependencies with the in
 ### For testing
 - [`armadillo (http://pointclouds.org/)`](http://arma.sourceforge.net/)
 - [`BayesFilters (0.9.100)`](https://github.com/robotology/bayes-filters-lib/tree/devel)
+- [`Eigen 3 (3.3.7-2)`](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 - [`mlpack (4.0.0)`](https://www.mlpack.org/)
 - [`OpenCV (3.4.0)`](https://opencv.org/)
 - [`PCL (1.9.1)`](http://pointclouds.org/)
