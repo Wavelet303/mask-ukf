@@ -34,7 +34,7 @@ Code has been tested on `Arch Linux` with the following dependencies with the in
 > We use `OpenMP` for faster evaluation of the `UKF` measurement model and for faster evaluation of the `ADD-S` metric. If possible, you should use a version of `mlpack` compiled against `OpenMP` to obtain faster execution of the outlier rejection procedure.
 
 ## Instructions for evaluation
-These instructios allows downloading precomputed results of algorithms `MaskUKF`, `DenseFusion` and `ICP` and evaluating the `ADD-S` and `RMSE` metrics. If you need to test the actual algorithm and recompute the results please follow the [Instructions for testing](#instructions-for-testing) section.
+These instructions allow downloading precomputed results of algorithms `MaskUKF`, `DenseFusion` and `ICP` and evaluating the `ADD-S` and `RMSE` metrics. If you need to test the actual algorithm and recompute the results please follow the [Instructions for testing](#instructions-for-testing) section.
 
 1. Clone the repository, build and install
    ```
