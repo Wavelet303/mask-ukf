@@ -85,8 +85,9 @@ Video Dataset`. We provide the output for the algorithm `DenseFusion` on all the
 ## Instructions for testing
 These instructions allow building the code implementing the `MaskUKF` algorithm and the `ICP` procedure used as baseline. Additionally, they allow testing the algorithms and producing the numerical results required to evaluate the `ADD-S` and `RMSE` metrics.
 
-For ease of retrieval of configuration files and contexts used by the algorithms, in the following we assume that all the relevant code is built and installed with `CMake` using the option `-DCMAKE_INSTALL_PREFIX=$ROBOT_INSTALL` where `$ROBOT_INSTALL` is a folder of your choice. We further assume that an environment variable `YARP_DATA_DIRS` pointing to `${ROBOT_INSTALL}/share/ICUBcontrib` exists. E.g. your `.bashrc` should contain something like
+For ease of retrieval of configuration files and contexts used by the algorithms, in the following we assume that all the relevant code is built and installed with `CMake` using the option `-DCMAKE_INSTALL_PREFIX=$ROBOT_INSTALL` where `$ROBOT_INSTALL` is a folder of your choice. We further assume that an environment variable `YARP_DATA_DIRS` pointing to `${ROBOT_INSTALL}/share/ICUBcontrib` exists and that the variable `PATH` is extended so as to point to `${ROBOT_INSTALL}/bin`. E.g. your `.bashrc` should contain something like
 ```
+export PATH=${PATH}:${ROBOT_INSTALL}/bin
 export YARP_DATA_DIRS=${YARP_DATA_DIRS}:${ROBOT_INSTALL}/share/ICUBcontrib
 ```
 If these instructions are not clear to you, fell free to fire up an [issue](https://github.com/robotology/mask-ukf/issues).
