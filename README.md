@@ -6,20 +6,20 @@ This is the official repository of MaskUKF, an instance segmentation aided Unsce
 
 **NEW**: Code/scripts for evaluation and testing available. Dataset for real-time scenario to be released soon.
 
-## Overview
+### Overview
 - [Dependencies](#dependencies)
 - [Instructions for evaluation](#instructions-for-evaluation)
 - [Instructions for testing](#instructions-for-testing)
 - [Structure of the results data](#structure-of-the-results-data)
 - [Results](#results)
 
-## Dependencies
+### Dependencies
 Code has been tested on `Arch Linux` with the following dependencies with the indicated version. Please note that the indicated version **is not** the minimum required version.
 
-### For evaluation
+#### For evaluation
 - [`Eigen 3 (3.3.7-2)`](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 
-### For testing
+#### For testing
 - [`armadillo (9.500.2-1)`](http://arma.sourceforge.net/)
 - [`BayesFilters (0.9.100)`](https://github.com/robotology/bayes-filters-lib/tree/devel)
 - [`Eigen 3 (3.3.7-2)`](http://eigen.tuxfamily.org/index.php?title=Main_Page)
@@ -31,11 +31,11 @@ Code has been tested on `Arch Linux` with the following dependencies with the in
 
 > Note: while we use `Eigen` for all the mathematical computations, the library `mlpack` relies on `armadillo`
 
-### Optional
+#### Optional
 - `OpenMP (8.0.0-1)` (optional for faster execution)
 > We use `OpenMP` for faster evaluation of the `UKF` measurement model and for faster evaluation of the `ADD-S` metric. If possible, you should use a version of `mlpack` compiled against `OpenMP` to obtain faster execution of the outlier rejection procedure.
 
-## Instructions for evaluation
+### Instructions for evaluation
 These instructions allow downloading precomputed results of algorithms `MaskUKF`, `DenseFusion` and `ICP` and evaluating the `ADD-S` and `RMSE` metrics. 
 
 If you need to test the actual algorithm and recompute the results please follow the [Instructions for testing](#instructions-for-testing) section. In case you recomputed the results, **you can skip to point (4)** for the actual evaluation of the metrics.
@@ -82,7 +82,7 @@ Video Dataset`. We provide the output for the algorithm `DenseFusion` on all the
        
    Not all combinations of `<alg>`, `<scenario>` and `<segmentation>` are available. For example, `ADD-S` results for `DenseFusion` are available in their [repository](https://github.com/j96w/DenseFusion#results).
    
-## Instructions for testing
+### Instructions for testing
 These instructions allow building the code implementing the `MaskUKF` algorithm and the `ICP` procedure used as baseline. Additionally, they allow testing the algorithms and producing the numerical results required to evaluate the `ADD-S` and `RMSE` metrics.
 
 For ease of retrieval of configuration files and contexts used by the algorithms, in the following we assume that all the relevant code is built and installed with `CMake` using the option `-DCMAKE_INSTALL_PREFIX=$ROBOT_INSTALL` where `$ROBOT_INSTALL` is a folder of your choice. We further assume that an environment variable `YARP_DATA_DIRS` pointing to `${ROBOT_INSTALL}/share/ICUBcontrib` exists and that the variable `PATH` is extended so as to point to `${ROBOT_INSTALL}/bin`. E.g. your `.bashrc` should contain something like
@@ -159,7 +159,7 @@ If these instructions are not clear to you, fell free to fire up an [issue](http
    Results are saved in `~/robot-code/mask-ukf/results` according to the structure explained in the [Structure of the results data](#structure-of-the-results-data) section. Each execution of the testing script **removes** any previously existing results. Evaluation of `ADD-S` and `RMSE` metrics is described in point (4) of the [Instructions for evaluation](#instructions-for-evaluation) section.
   
    
-## Structure of the results data
+### Structure of the results data
 The results data is organized in folders according to the following structure
 
 ```
@@ -183,18 +183,18 @@ For `nrt` data, the index of the frame corresponds to the same index of the corr
 
 For `dense_fusion` and `icp` the velocities are not available and are substituted with zeros.
 
-## Results
+### Results
 
-### ADD-S (masks available at each frame)
+#### ADD-S (masks available at each frame)
 
 <p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/adds.png" alt="in hand object tracking" width="750" height="420"/></p>
 
-### RMSE (masks available at each frame)
+#### RMSE (masks available at each frame)
 
 <p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/rmse.png" alt="in hand object tracking" width="750" height="420"/></p>
 
 
-### ADD-S and RMSE (masks from Mask R-CNN at 5 fps)
+#### ADD-S and RMSE (masks from Mask R-CNN at 5 fps)
 
 <p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/rt.png" alt="in hand object tracking" width="450" height="450"/></p>
 
