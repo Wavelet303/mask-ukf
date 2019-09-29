@@ -36,7 +36,9 @@ Code has been tested on `Arch Linux` with the following dependencies with the in
 > We use `OpenMP` for faster evaluation of the `UKF` measurement model and for faster evaluation of the `ADD-S` metric. If possible, you should use a version of `mlpack` compiled against `OpenMP` to obtain faster execution of the outlier rejection procedure.
 
 ## Instructions for evaluation
-These instructions allow downloading precomputed results of algorithms `MaskUKF`, `DenseFusion` and `ICP` and evaluating the `ADD-S` and `RMSE` metrics. If you need to test the actual algorithm and recompute the results please follow the [Instructions for testing](#instructions-for-testing) section.
+These instructions allow downloading precomputed results of algorithms `MaskUKF`, `DenseFusion` and `ICP` and evaluating the `ADD-S` and `RMSE` metrics. 
+
+If you need to test the actual algorithm and recompute the results please follow the [Instructions for testing](#instructions-for-testing) section. In case you recomputed the results, **you can skip to point (4)** for the actual evaluation of the metrics.
 
 1. Clone the repository, build and install
    ```
@@ -44,7 +46,7 @@ These instructions allow downloading precomputed results of algorithms `MaskUKF`
    cd mask-ukf
    mkdir build
    cd build
-   cmake ../ -DCMAKE_PREFIX_PATH=<INSTALL_PATH> [-DUSE_OPENMP=ON]
+   cmake -DCMAKE_PREFIX_PATH=<INSTALL_PATH> [-DUSE_OPENMP=ON] ../
    make install
    ```
    > Build with `OpenMP` is optional.
@@ -55,7 +57,8 @@ These instructions allow downloading precomputed results of algorithms `MaskUKF`
    ```
    in your environment.
 
-2. Download the zip file [results.zip](https://figshare.com/account/verify_email/NTA2NzI.2i19MtTVnD1I6kqqnaGjHvbIFjo) file containing the results of the algorithms `MaskUKF`, `ICP` and `DenseFusion` on the `YCB Video Dataset`. We provide the output for the algorithm `DenseFusion` on all the frames of the dataset (not only on the key frames).
+2. Download the zip file [results.zip](https://figshare.com/account/verify_email/NTA2NzI.2i19MtTVnD1I6kqqnaGjHvbIFjo) containing the results of the algorithms `MaskUKF`, `ICP` and `DenseFusion` on the `
+Video Dataset`. We provide the output for the algorithm `DenseFusion` on all the frames of the dataset (not only on the key frames).
 
    ```
    wget https://ndownloader.figshare.com/files/17811737
@@ -64,10 +67,10 @@ These instructions allow downloading precomputed results of algorithms `MaskUKF`
 3. Extract the zip file
    ```
    unzip results.zip -d <mask-ukf>/results
-   ```[
+   ```
    where `<mask-ukf>` is the folder where the repository was cloned. More details on the content of the results data [here](https://github.com/robotology/mask-ukf#structure-of-the-results-data).
 
-4. Execute the evaluation using the scripts provided in `<mask-ukf>/results/scripts`:
+4. Execute the evaluation using the scripts provided in `<mask-ukf>/results/scripts` (or `~/robot-code/mask-ukf/results/scripts` if you followed instructions in the [Instructions for testing](#instructions-for-testing) section):
    - the `add-s` folder contains scripts for the `ADD-S` metric both `<2 cm` and `AUC`
    - the `rmse` folder contains scripts for the `RMSE` metric
    - the `rmse_velocity` folder contains scripts for the `RMSE` for the linear and angular velocity
@@ -78,6 +81,82 @@ These instructions allow downloading precomputed results of algorithms `MaskUKF`
      - `<segmentation>` can be `gt` (i.e. ground truth), `mrcnn` (i.e. `Mask R-CNN`) or `posecnn` (i.e. masks from segmentation network of `PoseCNN`)
        
    Not all combinations of `<alg>`, `<scenario>` and `<segmentation>` are available. For example, `ADD-S` results for `DenseFusion` are available in their [repository](https://github.com/j96w/DenseFusion#results).
+   
+## Instructions for testing
+These instructions allow building the code implementing the `MaskUKF` algorithm and the `ICP` procedure used as baseline. Additionally, they allow testing the algorithms and producing the numerical results required to evaluate the `ADD-S` and `RMSE` metrics.
+
+For ease of retrieval of configuration files and contexts used by the algorithms, in the following we assume that all the relevant code is built and installed with `CMake` using the option `-DCMAKE_INSTALL_PREFIX=$ROBOT_INSTALL` where `$ROBOT_INSTALL` is a folder of your choice. We further assume that an environment variable `YARP_DATA_DIRS` pointing to `${ROBOT_INSTALL}/share/ICUBcontrib` exists. E.g. your `.bashrc` should contain something like
+```
+export YARP_DATA_DIRS=${YARP_DATA_DIRS}:${ROBOT_INSTALL}/share/ICUBcontrib
+```
+If these instructions are not clear to you, fell free to fire up an [issue](https://github.com/robotology/mask-ukf/issues).
+
+1. Build and install **OR** install precompiled version of libraries `armadillo`, `Eigen`, `mlpack`, `OpenCV` and `PCL`.
+
+2. Build and install `YARP`
+   ```
+   mkdir -p ~/robot-code
+   cd ~/robot-code
+   git clone https://github.com/robotology/yarp
+   cd yarp
+   git checkout v3.2.1
+   mkdir build && cd build && cmake -DCMAKE_INSTALL_PREFIX=$ROBOT_INSTALL ../
+   make install
+   ```
+
+3. Install `ICUBcontrib metapackage`
+   ```
+   mkdir -p ~/robot-code
+   cd ~/robot-code
+   git clone https://github.com/robotology/icub-contrib-common
+   cd icub-contrib-common
+   git checkout v1.13.0
+   mkdir build && cd build && cmake -DCMAKE_INSTALL_PREFIX=$ROBOT_INSTALL ../
+   make install
+   ```
+
+4. Build and install `BayesFilters` filtering library
+   ```
+   mkdir -p ~/robot-code
+   cd ~/robot-code
+   git clone https://github.com/robotology/bayes-filters-lib
+   cd bayes-filters-lib
+   git checkout 6af232e
+   mkdir build && cd build && cmake -DCMAKE_INSTALL_PREFIX=$ROBOT_INSTALL ../
+   make install
+   ```
+
+5. Build and install `MaskUKF` and baseline `ICP` implementations
+   ```
+   mkdir -p ~/robot-code
+   git clone https://robotology/mask-ukf
+   cd mask-ukf
+   mkdir build && cd build
+   cmake -DCMAKE_INSTALL_PREFIX=$ROBOT_INSTALL -DBUILD_OBJECT_TRACKING=ON [-DUSE_OPENMP=ON] ../
+   make install
+   ```
+   > Build with `OpenMP` is optional.
+   
+6. Download the zip file [dataset_nrt.zip](https://istitutoitalianotecnologia-my.sharepoint.com/:u:/r/personal/nicola_piga_iit_it/Documents/dataset_nrt.zip?csf=1&e=nS5CIN) containing the dataset for **non-real-time scenario**. The dataset consists of a restructured version of the `YCB Video Dataset` containing `RGB` images, png masks (ground truth masks, `PoseCNN` masks and `Mask R-CNN` masks) and 6D ground truth poses in accessible formats (no `MATLAB .mat` files involved). Extract the dataset as follows:
+    ```
+    unzip dataset_nrt.zip -d ~/robot-code/mask-ukf/datasets
+    ```
+7. Download and extract the dataset for **real-time scenario**. (To be released soon. You can still run the algorithms on the non-real-time scenario using the dataset downloaded in (6)).
+   
+8. Execute the algorithms on the `YCB Video Dataset` using the scripts provided in `~robot-code/mask-ukf/testing/<scenario>` where `<scenario>` can be `nrt` for non-real-time or `rt` for real-time. At the moment `rt` scripts cannot be used as the real-time dataset is in the process of being released. Scripts can be run on all the objects of the `YCB Video Dataset` testing set 
+   ```
+   bash test_<alg>.sh <segmentation>
+   ```
+   or on a single object
+   ```
+   bash test_<alg>_single.sh <segmentation> <class_name>
+   ```
+   where `<alg>` can be `mask-ukf` or `icp`, `<segmentation>` can be `gt` (i.e. ground truth), `mrcnn` (i.e. `Mask R-CNN`) or `posecnn` (i.e. masks from segmentation network of `PoseCNN`) and `<class_name>` is the class name (e.g. `002_master_chef_can`). Scripts for `real-time-scenario` are available with `<segmentation>=mrcnn` only.
+   
+   During testing, a viewer based on the `YARP` library will be available in order to inspect the current estimate of the object (the viewer shows a contour representing the projection onto the camera plane of the 6D pose of the object).
+   
+   Results are saved in `~/robot-code/mask-ukf/results` according to the structure explained in the [Structure of the results data](#structure-of-the-results-data) section. Each execution of the testing script **removes** any previously existing results. Evaluation of `ADD-S` and `RMSE` metrics is described in point (4) of the [Instructions for evaluation](#instructions-for-evaluation) section.
+  
    
 ## Structure of the results data
 The results data is organized in folders according to the following structure
@@ -90,8 +169,8 @@ where
 - `<alg>` can be `mask-ukf`, `icp` or `dense_fusion`
 - `<scenario>` can be `nrt` (i.e. masks available at each frame) or `rt` (i.e. masks from `Mask R-CNN` at 5 fps)
 - `<segmentation>` can be `gt` (i.e. ground truth masks), `mrcnn` (i.e. masks from `Mask R-CNN`) or `posecnn` (i.e. masks from segmentation network of `PoseCNN`)
-- `<class_name>` is the name of one of the classes belonging to the testing set of the YCB Video Dataset
-- `<video_id>` is the video id of one of the video belonging to the testing set of the YCB Video Dataset
+- `<class_name>` is the name of one of the classes belonging to the testing set of the `YCB Video Dataset`
+- `<video_id>` is the video id of one of the video belonging to the testing set of the `YCB Video Dataset`
 
 Please note that not all the combinations are available. For example, `DenseFusion` is available only in the `nrt` scenario.
 
