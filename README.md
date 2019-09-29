@@ -20,7 +20,7 @@ Code has been tested on `Arch Linux` with the following dependencies with the in
 - [`Eigen 3 (3.3.7-2)`](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 
 ### For testing
-- [`armadillo (http://pointclouds.org/)`](http://arma.sourceforge.net/)
+- [`armadillo (9.500.2-1)`](http://arma.sourceforge.net/)
 - [`BayesFilters (0.9.100)`](https://github.com/robotology/bayes-filters-lib/tree/devel)
 - [`Eigen 3 (3.3.7-2)`](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 - [`ICUBcontrib (1.13.0)`](https://github.com/robotology/icub-contrib-common)
