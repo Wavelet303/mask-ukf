@@ -4,11 +4,26 @@ This is the official repository of MaskUKF, an instance segmentation aided Unsce
 
 <p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/scheme.png" alt="in hand object tracking"/></p>
 
-News: 26/09/2019 - code for evaluation available. Code of the actual implementation to be released soon.
+**NEW**: Code/scripts for evaluation and testing available. Dataset for real-time scenario to be released soon.
 
 ## Dependencies
-- `Eigen 3`
-- `OpenMP` (optional for faster execution)
+Code has been tested on `Arch Linux` with the following dependencies with the indicated version. Please note that the indicated version **is not** the minimum required version.
+
+### For evaluation
+- [`Eigen 3 (3.3.7-2)`](http://eigen.tuxfamily.org/index.php?title=Main_Page)
+
+### For testing
+- [`armadillo (http://pointclouds.org/)`](http://arma.sourceforge.net/)
+- [`BayesFilters (0.9.100)`](https://github.com/robotology/bayes-filters-lib/tree/devel)
+- [`mlpack (4.0.0)`](https://www.mlpack.org/)
+- [`OpenCV (3.4.0)`](https://opencv.org/)
+- [`PCL (1.9.1)`](http://pointclouds.org/)
+
+> Note: while we use `Eigen` for all the mathematical computations, the library `ml-pack` relies on `armadillo`
+
+### Optional
+- `OpenMP (8.0.0-1)` (optional for faster execution)
+> We use `OpenMP` for faster evaluation of the `UKF` measurement model and for faster evaluation of the `ADD-S` metric. If possible, you should use a version of `mlpack` compiled against `OpenMP` to obtain faster execution of the outlier rejection procedure.
 
 ## Instructions for evaluation
 1. Clone the repository, build and install
