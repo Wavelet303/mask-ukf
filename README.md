@@ -6,6 +6,12 @@ This is the official repository of MaskUKF, an instance segmentation aided Unsce
 
 **NEW**: Code/scripts for evaluation and testing available. Dataset for real-time scenario to be released soon.
 
+## Overview
+- [Dependencies](#dependencies)
+- [Instructions for evaluation](#instructions-for-evaluation)
+- [Instructions for testing](#instructions-for-testing)
+- [Structure of the results data](#structure-of-the-results-data)
+
 ## Dependencies
 Code has been tested on `Arch Linux` with the following dependencies with the indicated version. Please note that the indicated version **is not** the minimum required version.
 
