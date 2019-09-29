@@ -34,6 +34,8 @@ Code has been tested on `Arch Linux` with the following dependencies with the in
 > We use `OpenMP` for faster evaluation of the `UKF` measurement model and for faster evaluation of the `ADD-S` metric. If possible, you should use a version of `mlpack` compiled against `OpenMP` to obtain faster execution of the outlier rejection procedure.
 
 ## Instructions for evaluation
+These instructios allows downloading precomputed results of algorithms `MaskUKF`, `DenseFusion` and `ICP` and evaluating the `ADD-S` and `RMSE` metrics. If you need to test the actual algorithm and recompute the results please follow the [Instructions for testing](#instructions-for-testing) section.
+
 1. Clone the repository, build and install
    ```
    git clone https://robotology/mask-ukf
@@ -60,7 +62,7 @@ Code has been tested on `Arch Linux` with the following dependencies with the in
 3. Extract the zip file
    ```
    unzip results.zip -d <mask-ukf>/results
-   ```
+   ```[
    where `<mask-ukf>` is the folder where the repository was cloned. More details on the content of the results data [here](https://github.com/robotology/mask-ukf#structure-of-the-results-data).
 
 4. Execute the evaluation using the scripts provided in `<mask-ukf>/results/scripts`:
