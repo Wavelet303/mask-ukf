@@ -42,7 +42,7 @@ If you need to test the actual algorithm and recompute the results please follow
 
 1. Clone the repository, build and install
    ```
-   git clone https://robotology/mask-ukf
+   git clone https://github.com/robotology/mask-ukf
    cd mask-ukf
    mkdir build
    cd build
@@ -130,7 +130,7 @@ If these instructions are not clear to you, fell free to fire up an [issue](http
 5. Build and install `MaskUKF` and baseline `ICP` implementations
    ```
    mkdir -p ~/robot-code
-   git clone https://robotology/mask-ukf
+   git clone https://github.com/robotology/mask-ukf
    cd mask-ukf
    mkdir build && cd build
    cmake -DCMAKE_INSTALL_PREFIX=$ROBOT_INSTALL -DBUILD_OBJECT_TRACKING=ON [-DUSE_OPENMP=ON] ../
