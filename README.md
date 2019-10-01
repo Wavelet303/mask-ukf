@@ -4,7 +4,7 @@ This is the official repository of MaskUKF, an instance segmentation aided Unsce
 
 <p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/scheme.png" alt="in hand object tracking"/></p>
 
-**NEW**: Code/scripts for evaluation and testing available. Dataset for real-time scenario to be released soon.
+**NEW**: Code/scripts for evaluation and testing available for both real-time and non-real-time scenario.
 
 ### Overview
 - [Dependencies](#dependencies)
@@ -57,11 +57,11 @@ If you need to test the actual algorithm and recompute the results please follow
    ```
    in your environment.
 
-2. Download the zip file [results.zip](https://figshare.com/account/verify_email/NTA2NzI.2i19MtTVnD1I6kqqnaGjHvbIFjo) containing the results of the algorithms `MaskUKF`, `ICP` and `DenseFusion` on the `
+2. Download the zip file containing the results of the algorithms `MaskUKF`, `ICP` and `DenseFusion` on the `
 Video Dataset`. We provide the output for the algorithm `DenseFusion` on all the frames of the dataset (not only on the key frames).
 
    ```
-   wget https://ndownloader.figshare.com/files/17811737
+   wget https://zenodo.org/record/3466491/files/results.zip
    ```
 
 3. Extract the zip file
@@ -138,11 +138,19 @@ If these instructions are not clear to you, fell free to fire up an [issue](http
    ```
    > Build with `OpenMP` is optional.
    
-6. Download the zip file [dataset_nrt.zip](https://istitutoitalianotecnologia-my.sharepoint.com/:u:/r/personal/nicola_piga_iit_it/Documents/dataset_nrt.zip?csf=1&e=nS5CIN) containing the dataset for **non-real-time scenario**. The dataset consists of a restructured version of the `YCB Video Dataset` containing `RGB` images, png masks (ground truth masks, `PoseCNN` masks and `Mask R-CNN` masks) and 6D ground truth poses in accessible formats (no `MATLAB .mat` files involved). Extract the dataset as follows:
+6. Download the zip file [dataset_nrt.zip](https://istitutoitalianotecnologia-my.sharepoint.com/:u:/r/personal/nicola_piga_iit_it/Documents/dataset_nrt.zip?csf=1&e=nS5CIN) containing the dataset for **non-real-time scenario**. 
+
+   The dataset consists of a restructured version of the `YCB Video Dataset` containing `RGB` images, png masks (ground truth masks, `PoseCNN` masks and `Mask R-CNN` masks) and 6D ground truth poses in accessible formats (no `MATLAB .mat` files involved). Extract the dataset as follows:
     ```
     unzip dataset_nrt.zip -d ~/robot-code/mask-ukf/datasets
     ```
-7. Download and extract the dataset for **real-time scenario**. (To be released soon. You can still run the algorithms on the non-real-time scenario using the dataset downloaded in (6)).
+7. Download and extract the dataset for **real-time scenario** (46.7 GB).
+
+   The dataset consists of a restructured version of the `YCB Video Dataset` containing `RGB` images, png `Mask R-CNN` masks and 6D ground truth poses in [`YARP data player`](https://www.yarp.it/yarpdataplayer.html) compatible format. The player allows simulating a real-time scenario with images at 30 fps and masks at 5 fps (maximum frequency declared by the authors of `Mask R-CNN`).
+   ```
+   wget https://zenodo.org/record/3465685/files/dataset_rt.zip
+   unzip dataset_rt.zip -d ~/robot-code/mask-ukf/datasets
+   ```
    
 8. Execute the algorithms on the `YCB Video Dataset` using the scripts provided in `~robot-code/mask-ukf/testing/<scenario>` where `<scenario>` can be `nrt` for non-real-time or `rt` for real-time. At the moment `rt` scripts cannot be used as the real-time dataset is in the process of being released. Scripts can be run on all the objects of the `YCB Video Dataset` testing set 
    ```
