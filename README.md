@@ -137,10 +137,11 @@ If these instructions are not clear to you, fell free to fire up an [issue](http
    ```
    > Build with `OpenMP` is optional.
    
-6. Download the zip file [dataset_nrt.zip](https://istitutoitalianotecnologia-my.sharepoint.com/:u:/r/personal/nicola_piga_iit_it/Documents/dataset_nrt.zip?csf=1&e=nS5CIN) containing the dataset for **non-real-time scenario**. 
+6. Download and extract the dataset for **non-real-time scenario** (15.7 GB).. 
 
    The dataset consists of a restructured version of the `YCB Video Dataset` containing `RGB` images, png masks (ground truth masks, `PoseCNN` masks and `Mask R-CNN` masks) and 6D ground truth poses in accessible formats (no `MATLAB .mat` files involved). Extract the dataset as follows:
     ```
+    wget https://zenodo.org/record/3466605/files/dataset_nrt.zip
     unzip dataset_nrt.zip -d ~/robot-code/mask-ukf/datasets
     ```
 7. Download and extract the dataset for **real-time scenario** (46.7 GB).
@@ -207,5 +208,6 @@ For `dense_fusion` and `icp` the velocities are not available and are substitute
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3466491.svg)](https://doi.org/10.5281/zenodo.3466491)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3465685.svg)](https://doi.org/10.5281/zenodo.3465685)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3466605.svg)](https://doi.org/10.5281/zenodo.3466605)
 
 
