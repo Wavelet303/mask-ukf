@@ -137,7 +137,7 @@ If these instructions are not clear to you, fell free to fire up an [issue](http
    ```
    > Build with `OpenMP` is optional.
    
-6. Download and extract the dataset for **non-real-time scenario** (15.7 GB).. 
+6. Download and extract the dataset for **non-real-time scenario** (15.7 GB).
 
    The dataset consists of a restructured version of the `YCB Video Dataset` containing `RGB` images, png masks (ground truth masks, `PoseCNN` masks and `Mask R-CNN` masks) and 6D ground truth poses in accessible formats (no `MATLAB .mat` files involved). Extract the dataset as follows:
     ```
