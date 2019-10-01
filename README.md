@@ -57,8 +57,7 @@ If you need to test the actual algorithm and recompute the results please follow
    ```
    in your environment.
 
-2. Download the zip file containing the results of the algorithms `MaskUKF`, `ICP` and `DenseFusion` on the `
-Video Dataset`. We provide the output for the algorithm `DenseFusion` on all the frames of the dataset (not only on the key frames).
+2. Download the zip file containing the results of the algorithms `MaskUKF`, `ICP` and `DenseFusion` on the `YCB Video Dataset`. We provide the output for the algorithm `DenseFusion` on all the frames of the dataset (not only on the key frames).
 
    ```
    wget https://zenodo.org/record/3466491/files/results.zip
