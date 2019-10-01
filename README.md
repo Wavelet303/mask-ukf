@@ -205,3 +205,7 @@ For `dense_fusion` and `icp` the velocities are not available and are substitute
 
 <p align="center"><img src="https://github.com/robotology/mask-ukf/blob/master/assets/rt.png" alt="in hand object tracking" width="450" height="450"/></p>
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3466491.svg)](https://doi.org/10.5281/zenodo.3466491)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3465685.svg)](https://doi.org/10.5281/zenodo.3465685)
+
+
